@@ -1,11 +1,3 @@
-
-import { getAllCoins } from './api/Api';
-import { Dashboard } from './component/Dashboard/Dashboard';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
 import React, { useState } from 'react';
 import {
   DesktopOutlined,
@@ -26,49 +18,28 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem('Dashboard', '1', <PieChartOutlined />),
-  // getItem('Option 2', '2', <DesktopOutlined />),
-  // getItem('User', 'sub1', <UserOutlined />, [
-  //   getItem('Tom', '3'),
-  //   getItem('Bill', '4'),
-  //   getItem('Alex', '5'),
-  // ]),
-  // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  // 
+  getItem('Option 1', '1', <PieChartOutlined />),
+  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('User', 'sub1', <UserOutlined />, [
+    getItem('Tom', '3'),
+    getItem('Bill', '4'),
+    getItem('Alex', '5'),
+  ]),
+  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+  getItem('Files', '9', <FileOutlined />),
 ];
 
-
-
-function App() {
+export const Navbar = () => {
   const [collapsed, setCollapsed] = useState(false);
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Dashboard />,
-       loader: getAllCoins
-    },
-    {
-      path :"/dashboard",
-      element : <h5>Hello world</h5>
-    }
-    
-  ]);
-
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
-
+  
   return (
-
-    <>
-    <nav style={{
-        minHeight: '5vh',
-      }}>ssds</nav>
-        <Layout
+    <Layout
       style={{
-        minHeight: '95vh',
+        minHeight: '100vh',
       }}
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
@@ -76,23 +47,34 @@ function App() {
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout>
-        
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+          }}
+        />
         <Content
           style={{
             margin: '0 16px',
           }}
         >
-          <RouterProvider router={router} />
-          {/* <div
+          <Breadcrumb
             style={{
-              padding: 24,
-              minHeight: 560,
-              background: colorBgContainer,
-              backgroundColor:'red'
+              margin: '16px 0',
             }}
           >
-             
-          </div> */}
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+            }}
+          >
+            Bill is a cat.
+          </div>
         </Content>
         <Footer
           style={{
@@ -102,8 +84,7 @@ function App() {
           Ant Design ©2023 Created by Ant UED
         </Footer>
       </Layout>
-    </Layout></>
+    </Layout>
   );
-}
+};
 
-export default App;
