@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import React, { useState } from 'react';
+import './App.css'
 import {
   DesktopOutlined,
   FileOutlined,
@@ -71,9 +72,9 @@ function App() {
         minHeight: '95vh',
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider style={{backgroundColor : '#1f183e'}} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu style={{backgroundColor : '#251c4c'}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout>
         
@@ -99,7 +100,7 @@ function App() {
             textAlign: 'center',
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          Hussain ©2023 Created by Shahadat
         </Footer>
       </Layout>
     </Layout></>
