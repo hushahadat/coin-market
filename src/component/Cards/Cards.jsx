@@ -1,30 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Card, Col, Row } from "antd";
-import { getAllCoins } from "../../api/Api";
 import "./Cards.css";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
+import { getIndividualCoin } from "../../api/Api";
 
 export const Cards = (props) => {
-  const { coins } = props;
+  const { cardsDetails } = props;
+  const [data,setData] = useState([])
+
+  const apidata = async ()=>{
+    if(cardsDetails){
+      let cardsData = await getIndividualCoin({key : 'BTC,ETH,USDT,BNB,DOGE'})
+      let finalData = cardsDetails?.map((items)=>{
+        let key = items?.symbol
+        let coin = cardsData[key]
+        coin = coin[0]
+        return {...items,logo :coin?.logo }
+      })
+      setData(finalData)
+    }
+
+  }
+
+  useEffect(()=>{
+    apidata()
+  },[cardsDetails])
   return (
     <>
+    
       <Col span={6}>
         <Card
           title={
             <span className="card-span" >
               {" "}
-              <p>
+              <span className="img-span">
                 {" "}
                 <img
-                  className="img-logo"
+                className="img-logo"
                   alt="bitcoin"
-                  src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                  src={data[0]?.logo}
                   height={20}
                   width={20}
-                />{" "}
-                {coins[0]?.name.toUpperCase()}{" "}
-              </p>{" "}
+                />{" "}<p>
+                  {data[0]?.name.toUpperCase()}{" "}
+                </p>
+                
+              </span>{" "}
               <p className="time-box">24h</p>
             </span>
           }
@@ -37,9 +59,9 @@ export const Cards = (props) => {
           <p
             className="price-p"
           >
-            $ {coins[0]?.quote?.USD?.price.toFixed(2)}{" "}
+            $ {data[0]?.quote?.USD?.price.toFixed(2)}{" "}
           </p>
-          {coins[0]?.quote?.USD?.percent_change_24h >= 0 ? (
+          {data[0]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
             className="percentage-change"
               style={{
@@ -47,7 +69,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <RiseOutlined />
             </p>
           ) : (
@@ -58,7 +80,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <FallOutlined />{" "}
             </p>
           )}
@@ -70,17 +92,19 @@ export const Cards = (props) => {
           title={
             <span className="card-span" >
               {" "}
-              <p>
+              <span className="img-span">
                 {" "}
                 <img
-                  className="img-logo"
+                className="img-logo"
                   alt="bitcoin"
-                  src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                  src={data[1]?.logo}
                   height={20}
                   width={20}
-                />{" "}
-                {coins[0]?.name.toUpperCase()}{" "}
-              </p>{" "}
+                />{" "}<p>
+                  {data[1]?.name.toUpperCase()}{" "}
+                </p>
+                
+              </span>{" "}
               <p className="time-box">24h</p>
             </span>
           }
@@ -93,9 +117,9 @@ export const Cards = (props) => {
           <p
             className="price-p"
           >
-            $ {coins[0]?.quote?.USD?.price.toFixed(2)}{" "}
+            $ {data[1]?.quote?.USD?.price.toFixed(2)}{" "}
           </p>
-          {coins[0]?.quote?.USD?.percent_change_24h >= 0 ? (
+          {data[1]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
             className="percentage-change"
               style={{
@@ -103,7 +127,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[1]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <RiseOutlined />
             </p>
           ) : (
@@ -114,7 +138,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[1]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <FallOutlined />{" "}
             </p>
           )}
@@ -126,17 +150,19 @@ export const Cards = (props) => {
           title={
             <span className="card-span" >
               {" "}
-              <p>
+              <span className="img-span">
                 {" "}
                 <img
-                  className="img-logo"
+                className="img-logo"
                   alt="bitcoin"
-                  src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                  src={data[4]?.logo}
                   height={20}
                   width={20}
-                />{" "}
-                {coins[0]?.name.toUpperCase()}{" "}
-              </p>{" "}
+                />{" "}<p>
+                  {data[4]?.name.toUpperCase()}{" "}
+                </p>
+                
+              </span>{" "}
               <p className="time-box">24h</p>
             </span>
           }
@@ -149,9 +175,9 @@ export const Cards = (props) => {
           <p
             className="price-p"
           >
-            $ {coins[0]?.quote?.USD?.price.toFixed(2)}{" "}
+            $ {data[4]?.quote?.USD?.price.toFixed(2)}{" "}
           </p>
-          {coins[0]?.quote?.USD?.percent_change_24h >= 0 ? (
+          {data[4]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
             className="percentage-change"
               style={{
@@ -159,7 +185,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[4]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <RiseOutlined />
             </p>
           ) : (
@@ -170,7 +196,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[4]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <FallOutlined />{" "}
             </p>
           )}
@@ -182,17 +208,19 @@ export const Cards = (props) => {
           title={
             <span className="card-span" >
               {" "}
-              <p>
+              <span className="img-span">
                 {" "}
                 <img
-                  className="img-logo"
+                className="img-logo"
                   alt="bitcoin"
-                  src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                  src={data[3]?.logo}
                   height={20}
                   width={20}
-                />{" "}
-                {coins[0]?.name.toUpperCase()}{" "}
-              </p>{" "}
+                />{" "}<p>
+                  {data[3]?.name.toUpperCase()}{" "}
+                </p>
+                
+              </span>{" "}
               <p className="time-box">24h</p>
             </span>
           }
@@ -205,9 +233,9 @@ export const Cards = (props) => {
           <p
             className="price-p"
           >
-            $ {coins[0]?.quote?.USD?.price.toFixed(2)}{" "}
+            $ {data[3]?.quote?.USD?.price.toFixed(2)}{" "}
           </p>
-          {coins[0]?.quote?.USD?.percent_change_24h >= 0 ? (
+          {data[3]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
             className="percentage-change"
               style={{
@@ -215,7 +243,7 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[3]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <RiseOutlined />
             </p>
           ) : (
@@ -226,12 +254,14 @@ export const Cards = (props) => {
               }}
             >
               {" "}
-              {coins[0]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
+              {data[3]?.quote?.USD?.percent_change_24h.toFixed(2)}{" "}
               <FallOutlined />{" "}
             </p>
           )}
         </Card>
       </Col>
+
+     
     </>
   );
 };

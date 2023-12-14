@@ -27,6 +27,11 @@
     padding: 0px;
     
 }
+.img-span{
+    display: flex;
+    justify-content: space-between
+}
 .img-logo{
-    
+    margin-block: auto;
+    margin-right: 4px;
 }

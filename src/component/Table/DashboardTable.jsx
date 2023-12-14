@@ -69,7 +69,7 @@ export const DashboardTable = (props) => {
           market_cap : item.quote.USD.price.toFixed(3)
         }
       })
-      console.log("++++++++++++_+_+__+_+_+_=",data)
+      // console.log("++++++++++++_+_+__+_+_+_=",data)
       settableData(data)
     }
 

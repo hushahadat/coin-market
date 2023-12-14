@@ -7,14 +7,15 @@ import { DashboardTable } from '../Table/DashboardTable';
 
 export const Dashboard = () => {
     const [coins,setcoins] = useState([])
+    const [cardsDetails,setCardsDetails] = useState([])
     let data = useLoaderData();
     
     useEffect(()=>{
-      console.log("+++++++++++++++++++++++++++++++++++=")
         if(data){
             data?.sort((a,b)=>{ return a.cmc_rank - b.cmc_rank})
-            console.log("data",data);
+            let cardsData = data?.filter((item)=> { return ['BTC','ETH','USDT','BNB','DOGE'].includes(item.symbol)})
             setcoins(data)
+            setCardsDetails(cardsData)
         }
 
     },[data])
@@ -25,7 +26,7 @@ export const Dashboard = () => {
     <br />
     <div className='cards'>
     <Row gutter={16}>
-        <Cards coins={coins} /> 
+        <Cards coins={coins} cardsDetails={cardsDetails}/> 
     </Row>
     <br/>
     <Row gutter={16}>
