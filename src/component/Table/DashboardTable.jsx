@@ -2,59 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag } from 'antd';
 import { Col } from "antd";
 import './Table.css'
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    // render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Symbol',
-    dataIndex: 'symbol',
-    key: 'symbol',
-  },
-  {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
-  },
-  // {
-  //   title: 'Tags',
-  //   key: 'tags',
-  //   dataIndex: 'tags',
-  //   render: (_, { tags }) => (
-  //     <>
-  //       {tags.map((tag) => {
-  //         let color = tag.length > 5 ? 'geekblue' : 'green';
-  //         if (tag === 'loser') {
-  //           color = 'volcano';
-  //         }
-  //         return (
-  //           <Tag color={color} key={tag}>
-  //             {tag.toUpperCase()}
-  //           </Tag>
-  //         );
-  //       })}
-  //     </>
-  //   ),
-  // },
-  {
-    title: 'market cap',
-    key: 'market_cap',
-    dataIndex: 'market_cap',
-    // render: (_, record) => (
-    //   <Space size="middle">
-    //     <a>Invite {record.name}</a>
-    //     <a>Delete</a>
-    //   </Space>
-    // ),
-  },
-];
-
+import {useNavigate } from "react-router-dom"
 
 
 export const DashboardTable = (props) => {
+  const navigate = useNavigate()
   const { Column, ColumnGroup } = Table;
   const { coins} = props 
   const [tableData,settableData] = useState([])
@@ -78,6 +30,7 @@ export const DashboardTable = (props) => {
 
   const onClickRow=(props)=>{
     console.log("2111111111212",props);
+    navigate(`/dashboard/${props.symbol}`)
   }
   return (
   <>

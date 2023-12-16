@@ -40,3 +40,24 @@ export const getIndividualCoin = async (body)=>{
     }
 
 }
+
+export const getCoin = async (body)=>{
+    let url2 = `${BASE_URL}/coin/getCoin`;
+    try{
+        let option ={
+            method : "post",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify(body)
+        }
+        
+
+        let res =  await fetch(url2,option)
+        let ress = await res.text()
+        return  JSON.parse(ress)
+    }catch(er){
+        console.log("er",er);
+    }
+
+}

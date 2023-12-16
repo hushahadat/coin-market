@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React from "react";
 import { Card, Col, Row } from "antd";
 import "./Cards.css";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
-import { getIndividualCoin } from "../../api/Api";
 
 export const Cards = (props) => {
-  const { cardsDetails } = props;
-  const [data,setData] = useState([])
+  const { cardsDetails :data } = props;
+  // const [data,setData] = useState([])
 
-  const apidata = async ()=>{
-    if(cardsDetails){
-      let cardsData = await getIndividualCoin({key : 'BTC,ETH,USDT,BNB,DOGE'})
-      let finalData = cardsDetails?.map((items)=>{
-        let key = items?.symbol
-        let coin = cardsData[key]
-        coin = coin[0]
-        return {...items,logo :coin?.logo }
-      })
-      setData(finalData)
-    }
+  // const apidata = async ()=>{
+  //   if(cardsDetails){
+  //     let cardsData = await getIndividualCoin({key : 'BTC,ETH,USDT,BNB,DOGE'})
+  //     let finalData = cardsDetails?.map((items)=>{
+  //       let key = items?.symbol
+  //       let coin = cardsData[key]
+  //       coin = coin[0]
+  //       return {...items,logo :coin?.logo }
+  //     })
+  //     setData(finalData)
+  //   }
 
-  }
+  // }
 
-  useEffect(()=>{
-    apidata()
-  },[cardsDetails])
+  // useEffect(()=>{
+  //   apidata()
+  // },[cardsDetails])
+
+
   return (
     <>
     
