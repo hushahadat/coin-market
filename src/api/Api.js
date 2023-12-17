@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:3022/api"
-// const BASE_URL = "https://in.hussain.co.in/api";
+// const BASE_URL = "http://localhost:3022/api"
+const BASE_URL = "https://in.hussain.co.in/api";
 export const getAllCoins = async () => {
   let url2 = `${BASE_URL}/coin/getAllCoin`;
   try {
