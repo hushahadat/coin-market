@@ -8,7 +8,6 @@ import { getIndividualCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
 
 export const Dashboard = () => {
-  
   const [loding, setLoding] = useState(false);
   const [coins, setcoins] = useState([]);
   const [cardsDetails, setCardsDetails] = useState([]);

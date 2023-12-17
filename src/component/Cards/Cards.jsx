@@ -4,7 +4,7 @@ import "./Cards.css";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 
 export const Cards = (props) => {
-  const { cardsDetails :data } = props;
+  const { cardsDetails: data } = props;
   // const [data,setData] = useState([])
 
   // const apidata = async ()=>{
@@ -25,27 +25,23 @@ export const Cards = (props) => {
   //   apidata()
   // },[cardsDetails])
 
-
   return (
     <>
-    
       <Col span={6}>
         <Card
           title={
-            <span className="card-span" >
+            <span className="card-span">
               {" "}
               <span className="img-span">
                 {" "}
                 <img
-                className="img-logo"
+                  className="img-logo"
                   alt="bitcoin"
                   src={data[0]?.logo}
                   height={20}
                   width={20}
-                />{" "}<p>
-                  {data[0]?.name.toUpperCase()}{" "}
-                </p>
-                
+                />{" "}
+                <p>{data[0]?.name.toUpperCase()} </p>
               </span>{" "}
               <p className="time-box">24h</p>
             </span>
@@ -56,14 +52,10 @@ export const Cards = (props) => {
           bodyStyle={{ paddingTop: "1px", backgroundColor: "#251c4c" }}
           className="card-body"
         >
-          <p
-            className="price-p"
-          >
-            $ {data[0]?.quote?.USD?.price.toFixed(2)}{" "}
-          </p>
+          <p className="price-p">$ {data[0]?.quote?.USD?.price.toFixed(2)} </p>
           {data[0]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
-            className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "green",
               }}
@@ -74,7 +66,7 @@ export const Cards = (props) => {
             </p>
           ) : (
             <p
-             className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "red",
               }}
@@ -90,20 +82,18 @@ export const Cards = (props) => {
       <Col span={6}>
         <Card
           title={
-            <span className="card-span" >
+            <span className="card-span">
               {" "}
               <span className="img-span">
                 {" "}
                 <img
-                className="img-logo"
+                  className="img-logo"
                   alt="bitcoin"
                   src={data[1]?.logo}
                   height={20}
                   width={20}
-                />{" "}<p>
-                  {data[1]?.name.toUpperCase()}{" "}
-                </p>
-                
+                />{" "}
+                <p>{data[1]?.name.toUpperCase()} </p>
               </span>{" "}
               <p className="time-box">24h</p>
             </span>
@@ -114,14 +104,10 @@ export const Cards = (props) => {
           bodyStyle={{ paddingTop: "1px", backgroundColor: "#251c4c" }}
           className="card-body"
         >
-          <p
-            className="price-p"
-          >
-            $ {data[1]?.quote?.USD?.price.toFixed(2)}{" "}
-          </p>
+          <p className="price-p">$ {data[1]?.quote?.USD?.price.toFixed(2)} </p>
           {data[1]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
-            className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "green",
               }}
@@ -132,7 +118,7 @@ export const Cards = (props) => {
             </p>
           ) : (
             <p
-             className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "red",
               }}
@@ -148,20 +134,18 @@ export const Cards = (props) => {
       <Col span={6}>
         <Card
           title={
-            <span className="card-span" >
+            <span className="card-span">
               {" "}
               <span className="img-span">
                 {" "}
                 <img
-                className="img-logo"
+                  className="img-logo"
                   alt="bitcoin"
                   src={data[4]?.logo}
                   height={20}
                   width={20}
-                />{" "}<p>
-                  {data[4]?.name.toUpperCase()}{" "}
-                </p>
-                
+                />{" "}
+                <p>{data[4]?.name.toUpperCase()} </p>
               </span>{" "}
               <p className="time-box">24h</p>
             </span>
@@ -172,14 +156,10 @@ export const Cards = (props) => {
           bodyStyle={{ paddingTop: "1px", backgroundColor: "#251c4c" }}
           className="card-body"
         >
-          <p
-            className="price-p"
-          >
-            $ {data[4]?.quote?.USD?.price.toFixed(2)}{" "}
-          </p>
+          <p className="price-p">$ {data[4]?.quote?.USD?.price.toFixed(2)} </p>
           {data[4]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
-            className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "green",
               }}
@@ -190,7 +170,7 @@ export const Cards = (props) => {
             </p>
           ) : (
             <p
-             className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "red",
               }}
@@ -206,20 +186,18 @@ export const Cards = (props) => {
       <Col span={6}>
         <Card
           title={
-            <span className="card-span" >
+            <span className="card-span">
               {" "}
               <span className="img-span">
                 {" "}
                 <img
-                className="img-logo"
+                  className="img-logo"
                   alt="bitcoin"
                   src={data[3]?.logo}
                   height={20}
                   width={20}
-                />{" "}<p>
-                  {data[3]?.name.toUpperCase()}{" "}
-                </p>
-                
+                />{" "}
+                <p>{data[3]?.name.toUpperCase()} </p>
               </span>{" "}
               <p className="time-box">24h</p>
             </span>
@@ -230,14 +208,10 @@ export const Cards = (props) => {
           bodyStyle={{ paddingTop: "1px", backgroundColor: "#251c4c" }}
           className="card-body"
         >
-          <p
-            className="price-p"
-          >
-            $ {data[3]?.quote?.USD?.price.toFixed(2)}{" "}
-          </p>
+          <p className="price-p">$ {data[3]?.quote?.USD?.price.toFixed(2)} </p>
           {data[3]?.quote?.USD?.percent_change_24h >= 0 ? (
             <p
-            className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "green",
               }}
@@ -248,7 +222,7 @@ export const Cards = (props) => {
             </p>
           ) : (
             <p
-             className="percentage-change"
+              className="percentage-change"
               style={{
                 color: "red",
               }}
@@ -260,8 +234,6 @@ export const Cards = (props) => {
           )}
         </Card>
       </Col>
-
-     
     </>
   );
 };
