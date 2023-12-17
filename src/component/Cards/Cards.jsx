@@ -2,10 +2,16 @@ import React from "react";
 import { Card, Col, Row } from "antd";
 import "./Cards.css";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 export const Cards = (props) => {
   const { cardsDetails: data } = props;
+  const navigate = useNavigate();
   // const [data,setData] = useState([])
+  const onClickRow = (props) => {
+    // console.log("2111111111212",props);
+    navigate(`/dashboard/${props}`);
+  };
 
   // const apidata = async ()=>{
   //   if(cardsDetails){
@@ -46,6 +52,7 @@ export const Cards = (props) => {
               <p className="time-box">24h</p>
             </span>
           }
+          onClick={()=>{onClickRow(data[0]?.symbol)}}
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#251c4c", color: "white" }}
@@ -98,6 +105,7 @@ export const Cards = (props) => {
               <p className="time-box">24h</p>
             </span>
           }
+          onClick={()=>{onClickRow(data[1]?.symbol)}}
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#251c4c", color: "white" }}
@@ -150,6 +158,7 @@ export const Cards = (props) => {
               <p className="time-box">24h</p>
             </span>
           }
+          onClick={()=>{onClickRow(data[4]?.symbol)}}
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#251c4c", color: "white" }}
@@ -202,6 +211,7 @@ export const Cards = (props) => {
               <p className="time-box">24h</p>
             </span>
           }
+          onClick={()=>{onClickRow(data[3]?.symbol)}}
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#251c4c", color: "white" }}

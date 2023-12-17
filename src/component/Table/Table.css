@@ -28,3 +28,7 @@
 .ant-spin-container{
     
 }
+
+.ant-table-tbody{
+    cursor: pointer !important;
+}
