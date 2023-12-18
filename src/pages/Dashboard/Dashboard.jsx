@@ -6,12 +6,23 @@ import { Cards } from "../../component/Cards/Cards";
 import { DashboardTable } from "../../component/Table/DashboardTable";
 import { getIndividualCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
+import { PopOver } from "../Popover/Popover";
 
 const Dashboard = () => {
   const [loding, setLoding] = useState(false);
   const [coins, setcoins] = useState([]);
   const [cardsDetails, setCardsDetails] = useState([]);
+  const [modelid,setModelId] = useState('')
+  const [show, setShow] = useState(false);
+
   let data = useLoaderData();
+
+  const onClickRow = (props) => {
+    // console.log("2111111111212",props);
+    // navigate(`/dashboard/${props}`);
+    setModelId(props)
+    setShow(true)
+  };
 
   const apidata = async (item) => {
     if (item) {
@@ -50,13 +61,14 @@ const Dashboard = () => {
           <br />
           <div className="cards">
             <Row gutter={16}>
-              <Cards cardsDetails={cardsDetails} />
+              <Cards cardsDetails={cardsDetails} onClickRow={onClickRow}/>
             </Row>
             <br />
             <Row gutter={16}>
-              <DashboardTable coins={coins} />
+              <DashboardTable coins={coins} onClickRow={onClickRow}/>
             </Row>
           </div>
+          {show && modelid?.length && <PopOver show={show} setShow={setShow} id={modelid}/>}
         </>
       )}
     </>

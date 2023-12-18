@@ -1,35 +1,10 @@
 import React from "react";
-import { Card, Col, Row } from "antd";
+import { Card, Col } from "antd";
 import "./Cards.css";
 import { RiseOutlined, FallOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 
 export const Cards = (props) => {
-  const { cardsDetails: data } = props;
-  const navigate = useNavigate();
-  // const [data,setData] = useState([])
-  const onClickRow = (props) => {
-    // console.log("2111111111212",props);
-    navigate(`/dashboard/${props}`);
-  };
-
-  // const apidata = async ()=>{
-  //   if(cardsDetails){
-  //     let cardsData = await getIndividualCoin({key : 'BTC,ETH,USDT,BNB,DOGE'})
-  //     let finalData = cardsDetails?.map((items)=>{
-  //       let key = items?.symbol
-  //       let coin = cardsData[key]
-  //       coin = coin[0]
-  //       return {...items,logo :coin?.logo }
-  //     })
-  //     setData(finalData)
-  //   }
-
-  // }
-
-  // useEffect(()=>{
-  //   apidata()
-  // },[cardsDetails])
+  const { cardsDetails: data ,onClickRow } = props;
 
   return (
     <>

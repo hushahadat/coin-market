@@ -1,48 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { Image } from "antd";
-import "./coin.css";
-import { useParams } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { Button, Modal,Image } from 'antd';
 import { getIndividualCoin, getCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
+import './Popover.css'
 
- const Coin = () => {
+export const PopOver = (props) => {
+  const { show , setShow, id } = props;
   const [coinData, setCoinData] = useState({});
   const [loding, setLoding] = useState(false);
-
-  let { id } = useParams();
-
   const getCoinData = async () => {
     let data1 = await getIndividualCoin({ key: id });
     let data2 = await getCoin({ key: id });
     setCoinData({ ...data1[id][0], ...data2[id][0] });
     setLoding(false);
+    
   };
+
+
   useEffect(() => {
     if (Object.entries(coinData).length == 0) {
       setLoding(true);
       getCoinData();
+      
     }
     return () => {};
-  }, []); 
+  }, [id]);
+
   return (
     <>
-      {loding ? (
+    {loding ? (
         <LodingSpinner />
-      ) : (
-        <div className="coin-card-body">
-          <span style={{ width: "30%", textAlign: "center" }}>
-            <br />
-            <Image width={150} src={coinData?.logo} />
-            <h2>{coinData?.name}</h2>
-            <h3>RANK : {coinData?.cmc_rank}</h3>
-            <h5>DESCRIPTION : {coinData?.description}</h5>
+        ) : (
+      <Modal
+        title={<span className="img-span"><img  className="img-logo" width={40} src={coinData?.logo} /> <h1>{coinData?.name}</h1> </span>}
+        open={show}
+        width ={900}
+        onOk={()=>{setShow(false)}}
+        onCancel={()=>{setShow(false)}}
+        okButtonProps={{
+          disabled: false,
+        }}
+        cancelButtonProps={{
+          disabled: true,
+        }}
+      >
+        
+        <>
+         <div className="model-body">
+            <span >
+            <h2>RANK : {coinData?.cmc_rank}</h2>
+           
             <h5>MAX SUPPLY : {coinData?.max_supply}</h5>
-            {/* <p>DEscription : {coinData?.description}</p> */}
-          </span>
-          <span style={{ width: "30%", textAlign: "LEFT" }}>
             <h5>
               PRICE : <b className="values">{coinData?.quote?.USD?.price}</b>
             </h5>
+
+            </span>
+            <span style={{ width: "30%", textAlign: "LEFT" }}>
+            
             <h5>
               MARKET CAP :{" "}
               <b className="values">{coinData?.quote?.USD?.market_cap}</b>
@@ -73,10 +88,13 @@ import { LodingSpinner } from "../../component/Spin/LodingSpinner";
               </b>
             </h5>
           </span>
-        </div>
-      )}
+
+         </div>
+          <h5 className="description">DESCRIPTION : {coinData?.description}</h5>
+        </>
+      
+      </Modal>
+        )}
     </>
   );
 };
-
-export default Coin

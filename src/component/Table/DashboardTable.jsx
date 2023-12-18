@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import { Col } from "antd";
 import "./Table.css";
-import { useNavigate } from "react-router-dom";
 
 export const DashboardTable = (props) => {
-  const navigate = useNavigate();
-  const { Column, ColumnGroup } = Table;
-  const { coins } = props;
+  const { Column } = Table;
+  const { coins,onClickRow } = props;
   const [tableData, settableData] = useState([]);
   useEffect(() => {
     if (coins) {
@@ -27,10 +25,6 @@ export const DashboardTable = (props) => {
     }
   }, [coins]);
 
-  const onClickRow = (props) => {
-    // console.log("2111111111212",props);
-    navigate(`/dashboard/${props.symbol}`);
-  };
   return (
     <>
       <Col span={24}>
@@ -39,7 +33,7 @@ export const DashboardTable = (props) => {
           onRow={(record, rowIndex) => {
             return {
               onClick: (e) => {
-                onClickRow(record);
+                onClickRow(record.symbol);
               }, // click row
             };
           }}
