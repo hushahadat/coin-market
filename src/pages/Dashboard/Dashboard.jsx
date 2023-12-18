@@ -7,7 +7,7 @@ import { DashboardTable } from "../../component/Table/DashboardTable";
 import { getIndividualCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const [loding, setLoding] = useState(false);
   const [coins, setcoins] = useState([]);
   const [cardsDetails, setCardsDetails] = useState([]);
@@ -62,3 +62,5 @@ export const Dashboard = () => {
     </>
   );
 };
+
+export default Dashboard

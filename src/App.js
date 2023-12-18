@@ -1,12 +1,12 @@
 import { getAllCoins } from "./api/Api";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Sidebar } from "./component/SideBar/Sidebar";
-import {Coin} from './pages/Coin/Coin'
 import { LodingSpinner } from "./component/Spin/LodingSpinner";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
+const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
+const Coin = React.lazy(() => import("./pages/Coin/Coin"));
 
 const router = createBrowserRouter([
   {
@@ -14,12 +14,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <Suspense fallback={<div> <LodingSpinner /></div>}><Dashboard /></Suspense>,
         loader: getAllCoins,
       },
       {
         path: "/dashboard/:id",
-        element: <Coin />,
+        element: <Suspense fallback={<div> <LodingSpinner /></div>}><Coin /></Suspense>,
       },
       {
         path: "/spin",

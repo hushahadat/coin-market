@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getIndividualCoin, getCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
 
-export const Coin = () => {
+ const Coin = () => {
   const [coinData, setCoinData] = useState({});
   const [loding, setLoding] = useState(false);
 
@@ -78,3 +78,5 @@ export const Coin = () => {
     </>
   );
 };
+
+export default Coin
