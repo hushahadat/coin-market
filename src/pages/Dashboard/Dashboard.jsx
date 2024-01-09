@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import { Row } from "antd";
 import "./Dashboard.css";
 import { Cards } from "../../component/Cards/Cards";
@@ -7,6 +7,7 @@ import { DashboardTable } from "../../component/Table/DashboardTable";
 import { getIndividualCoin } from "../../api/Api";
 import { LodingSpinner } from "../../component/Spin/LodingSpinner";
 import { PopOver } from "../Popover/Popover";
+import { getAllCoins } from "../../api/Api";
 
 const Dashboard = () => {
   const [loding, setLoding] = useState(false);
@@ -15,7 +16,7 @@ const Dashboard = () => {
   const [modelid,setModelId] = useState('')
   const [show, setShow] = useState(false);
 
-  let data = useLoaderData();
+  // let data = useLoaderData();
 
   const onClickRow = (props) => {
     // console.log("2111111111212",props);
@@ -38,19 +39,24 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (data && coins?.length == 0) {
-      setLoding(true);
-      data?.sort((a, b) => {
-        return a.cmc_rank - b.cmc_rank;
-      });
-      let cardsData = data?.filter((item) => {
-        return ["BTC", "ETH", "USDT", "BNB", "DOGE"].includes(item.symbol);
-      });
-      apidata(cardsData);
-      setcoins(data);
+  useEffect( () => {
+    const getData = async () =>{
+      if ( coins?.length == 0) {
+        let data =[]
+        setLoding(true);
+         data = await getAllCoins()
+         data?.sort((a, b) => {
+          return a.cmc_rank - b.cmc_rank;
+        });
+        let cardsData = data?.filter((item) => {
+          return ["BTC", "ETH", "USDT", "BNB", "DOGE"].includes(item.symbol);
+        });
+        apidata(cardsData);
+        setcoins(data);
+      }
     }
-  }, [data]);
+     getData()
+  }, []);
 
   return (
     <>

@@ -12,9 +12,10 @@ export const getAllCoins = async () => {
       // body: JSON.stringify('')
     };
     let allData = await fetch(url2, options);
-    return allData;
+    allData = await allData.text()
+    return JSON.parse(allData);
   } catch (er) {
-    console.log("ererer", er);
+    console.log("_______", er);
     return er;
   }
 };

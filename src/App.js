@@ -15,7 +15,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Suspense fallback={<div> <LodingSpinner /></div>}><Dashboard /></Suspense>,
-        loader: getAllCoins,
+        // loader: getAllCoins,
       },
       // {
       //   path: "/dashboard/:id",
