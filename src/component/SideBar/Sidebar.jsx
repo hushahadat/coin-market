@@ -37,13 +37,13 @@ export const Sidebar = () => {
   } = theme.useToken();
   return (
     <>
-      <nav
+      {/* <nav
         style={{
           minHeight: "5vh",
         }}
       >
         NAV BAR
-      </nav>
+      </nav> */}
       <Layout
         style={{
           minHeight: "95vh",
