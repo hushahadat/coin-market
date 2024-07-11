@@ -1,6 +1,13 @@
-.ant-layout-sider-trigger{
-    background-color: #251c4c !important;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-.ant-menu-item{
-    background-color: #463a6c !important;
+
+a {
+  text-decoration: none;
+  color: '#A91D3A';
 }

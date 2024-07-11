@@ -1,39 +1,29 @@
-import { getAllCoins } from "./api/Api";
-import { Sidebar } from "./component/SideBar/Sidebar";
-import { LodingSpinner } from "./component/Spin/LodingSpinner";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { PopOver } from "./pages/Popover/Popover";
-import React, { Suspense } from "react";
+import { makeStyles } from "@material-ui/core";
+import Homepage from "./Pages/HomePage";
 import "./App.css";
-const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
-const Coin = React.lazy(() => import("./pages/Coin/Coin"));
+import { BrowserRouter, Route } from "react-router-dom";
+import CoinPage from "./Pages/CoinPage";
+import Header from "./components/Header";
 
-const router = createBrowserRouter([
-  {
-    element: <Sidebar />,
-    children: [
-      {
-        path: "/",
-        element: <Suspense fallback={<div> <LodingSpinner /></div>}><Dashboard /></Suspense>,
-        // loader: getAllCoins,
-      },
-      // {
-      //   path: "/dashboard/:id",
-      //   element: <Suspense fallback={<div> <LodingSpinner /></div>}><Coin /></Suspense>,
-      // },
-      {
-        path: "/spin",
-        element: <PopOver />,
-      },
-    ],
+const useStyles = makeStyles(() => ({
+  App: {
+    backgroundColor: "#14161a",
+    color: "white",
+    minHeight: "100vh",
   },
-]);
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <BrowserRouter>
+      <div className={classes.App}>
+        <Header />
+        <Route path="/" component={Homepage} exact />
+        <Route path="/coins/:id" component={CoinPage} exact />
+      </div>
+    </BrowserRouter>
   );
 }
 
