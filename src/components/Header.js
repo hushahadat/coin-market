@@ -5,12 +5,12 @@ import {
   Select,
   Toolbar,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   createTheme,
   makeStyles,
   ThemeProvider,
-} from "@material-ui/core/styles";
+} from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 

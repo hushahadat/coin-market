@@ -7,7 +7,7 @@ import {
   createTheme,
   makeStyles,
   ThemeProvider,
-} from "@material-ui/core";
+} from "@mui/material";
 import SelectButton from "./SelectButton";
 import { chartDays } from "../config/data";
 import { CryptoState } from "../CryptoContext";

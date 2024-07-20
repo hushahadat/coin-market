@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/material";
 
 const SelectButton = ({ children, selected, onClick }) => {
   const useStyles = makeStyles({
