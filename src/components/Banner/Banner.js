@@ -26,6 +26,7 @@ function Banner() {
     height: "50%",
     display: "flex",
     alignItems: "center",
+    overflow : "hidden"
   };
 
   return (
