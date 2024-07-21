@@ -1,8 +1,7 @@
-import { LinearProgress, makeStyles, Typography } from "@mui/material";
+import { LinearProgress, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import ReactHtmlParser from "react-html-parser";
 import CoinInfo from "../components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { numberWithCommas } from "../components/CoinsTable";
@@ -16,88 +15,88 @@ const CoinPage = () => {
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
-
     setCoin(data);
   };
 
   useEffect(() => {
     fetchCoin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-      [theme.breakpoints.down("md")]: {
-        flexDirection: "column",
-        alignItems: "center",
-      },
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  };
+
+  const sidebarStyle = {
+    width: "30%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 25,
+    borderRight: "2px solid grey",
+    '@media (max-width: 960px)': {
+      width: "100%",
+      borderRight: "none",
+    }
+  };
+
+  const headingStyle = {
+    fontWeight: "bold",
+    marginBottom: 20,
+    fontFamily: "Montserrat",
+  };
+
+  const descriptionStyle = {
+    width: "100%",
+    fontFamily: "Montserrat",
+    padding: 25,
+    paddingBottom: 15,
+    paddingTop: 0,
+    textAlign: "justify",
+  };
+
+  const marketDataStyle = {
+    alignSelf: "start",
+    padding: 25,
+    paddingTop: 10,
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "start",
+    '@media (max-width: 960px)': {
+      justifyContent: "space-around",
+      flexDirection: "row",
     },
-    sidebar: {
-      width: "30%",
-      [theme.breakpoints.down("md")]: {
-        width: "100%",
-      },
-      display: "flex",
+    '@media (max-width: 600px)': {
       flexDirection: "column",
       alignItems: "center",
-      marginTop: 25,
-      borderRight: "2px solid grey",
     },
-    heading: {
-      fontWeight: "bold",
-      marginBottom: 20,
-      fontFamily: "Montserrat",
+    '@media (max-width: 360px)': {
+      alignItems: "start",
     },
-    description: {
-      width: "100%",
-      fontFamily: "Montserrat",
-      padding: 25,
-      paddingBottom: 15,
-      paddingTop: 0,
-      textAlign: "justify",
-    },
-    marketData: {
-      alignSelf: "start",
-      padding: 25,
-      paddingTop: 10,
-      width: "100%",
-      [theme.breakpoints.down("md")]: {
-        display: "flex",
-        justifyContent: "space-around",
-      },
-      [theme.breakpoints.down("sm")]: {
-        flexDirection: "column",
-        alignItems: "center",
-      },
-      [theme.breakpoints.down("xs")]: {
-        alignItems: "start",
-      },
-    },
-  }));
-
-  const classes = useStyles();
+  };
 
   if (!coin) return <LinearProgress style={{ backgroundColor: "#A91D3A" }} />;
 
   return (
-    <div className={classes.container}>
-      <div className={classes.sidebar}>
+    <div style={containerStyle}>
+      <div style={sidebarStyle}>
         <img
           src={coin?.image.large}
           alt={coin?.name}
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className={classes.heading}>
+        <Typography variant="h3" style={headingStyle}>
           {coin?.name}
         </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
+        <Typography variant="subtitle1" style={descriptionStyle}>
           {coin?.description.en.split(". ")[0]}.
         </Typography>
-        <div className={classes.marketData}>
+        <div style={marketDataStyle}>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" style={headingStyle}>
               Rank:
             </Typography>
             &nbsp; &nbsp;
@@ -112,7 +111,7 @@ const CoinPage = () => {
           </span>
 
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" style={headingStyle}>
               Current Price:
             </Typography>
             &nbsp; &nbsp;
@@ -129,7 +128,7 @@ const CoinPage = () => {
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" style={headingStyle}>
               Market Cap:
             </Typography>
             &nbsp; &nbsp;
@@ -156,3 +155,4 @@ const CoinPage = () => {
 };
 
 export default CoinPage;
+   

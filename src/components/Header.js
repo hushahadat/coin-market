@@ -8,37 +8,31 @@ import {
 } from "@mui/material";
 import {
   createTheme,
-  makeStyles,
   ThemeProvider,
 } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
-
-const useStyles = makeStyles((theme) => ({
-  title: {
-    flex: 1,
-    color: "#A91D3A",
-    fontFamily: "Montserrat",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-}));
 
 const darkTheme = createTheme({
   palette: {
     primary: {
       main: "#fff",
     },
-    type: "dark",
+    mode: "dark", // Updated for MUI v5
   },
 });
 
 function Header() {
-  const classes = useStyles();
   const { currency, setCurrency } = CryptoState();
-
   const history = useHistory();
 
+  const titleStyles = {
+    flex: 1,
+    color: "#A91D3A",
+    fontFamily: "Montserrat",
+    fontWeight: "bold",
+    cursor: "pointer",
+  };
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="transparent" position="static">
@@ -47,11 +41,10 @@ function Header() {
             <Typography
               onClick={() => history.push(`/`)}
               variant="h4"
-              className={classes.title}
+              style={titleStyles}
             >
               Crypto-Pulse
             </Typography>
-            {/* <Button color="inherit">Login</Button> */}
             <Select
               variant="outlined"
               labelId="demo-simple-select-label"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/material";
 import Pagination from "@mui/lab/Pagination";
 import {
   Container,
@@ -32,24 +31,6 @@ export default function CoinsTable() {
   const [page, setPage] = useState(1);
 
   const { currency, symbol } = CryptoState();
-
-  const useStyles = makeStyles({
-    row: {
-      backgroundColor: "#16171a",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#A91D3A",
-      },
-      fontFamily: "Montserrat",
-    },
-    pagination: {
-      "& .MuiPaginationItem-root": {
-        color: "#A91D3A",
-      },
-    },
-  });
-
-  const classes = useStyles();
   const history = useHistory();
 
   const darkTheme = createTheme({
@@ -57,7 +38,7 @@ export default function CoinsTable() {
       primary: {
         main: "#fff",
       },
-      type: "dark",
+      mode: "dark",
     },
   });
 
@@ -81,6 +62,21 @@ export default function CoinsTable() {
         coin.name.toLowerCase().includes(search) ||
         coin.symbol.toLowerCase().includes(search)
     );
+  };
+
+  const rowStyles = {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#A91D3A",
+    },
+    fontFamily: "Montserrat",
+  };
+
+  const paginationStyles = {
+    "& .MuiPaginationItem-root": {
+      color: "#A91D3A",
+    },
   };
 
   return (
@@ -129,7 +125,7 @@ export default function CoinsTable() {
                     return (
                       <TableRow
                         onClick={() => history.push(`/coins/${row.id}`)}
-                        className={classes.row}
+                        style={rowStyles}
                         key={row.name}
                       >
                         <TableCell
@@ -191,7 +187,6 @@ export default function CoinsTable() {
           )}
         </TableContainer>
 
-        {/* Comes from @material-ui/lab */}
         <Pagination
           count={(handleSearch()?.length / 10).toFixed(0)}
           style={{
@@ -200,7 +195,7 @@ export default function CoinsTable() {
             display: "flex",
             justifyContent: "center",
           }}
-          classes={{ ul: classes.pagination }}
+          sx={paginationStyles}
           onChange={(_, value) => {
             setPage(value);
             window.scroll(0, 450);

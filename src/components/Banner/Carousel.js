@@ -1,4 +1,3 @@
-import { makeStyles } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
@@ -13,39 +12,33 @@ const Carousel = () => {
 
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
-
-    console.log(data);
     setTrending(data);
   };
 
   useEffect(() => {
     fetchTrendingCoins();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-  const useStyles = makeStyles((theme) => ({
-    carousel: {
-      height: "50%",
-      display: "flex",
-      alignItems: "center",
-    },
-    carouselItem: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      cursor: "pointer",
-      textTransform: "uppercase",
-      color: "white",
-    },
-  }));
+  const carouselStyles = {
+    height: "50%",
+    display: "flex",
+    alignItems: "center",
+  };
 
-  const classes = useStyles();
+  const carouselItemStyles = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    cursor: "pointer",
+    textTransform: "uppercase",
+    color: "white",
+  };
 
   const items = trending.map((coin) => {
     let profit = coin?.price_change_percentage_24h >= 0;
 
     return (
-      <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
+      <Link style={carouselItemStyles} to={`/coins/${coin.id}`} key={coin.id}>
         <img
           src={coin?.image}
           alt={coin.name}
@@ -82,7 +75,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className={classes.carousel}>
+    <div style={carouselStyles}>
       <AliceCarousel
         mouseTracking
         infinite
