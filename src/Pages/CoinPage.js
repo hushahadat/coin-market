@@ -24,8 +24,9 @@ const CoinPage = () => {
 
   const containerStyle = {
     display: "flex",
-    flexDirection: "column",
+    // flexDirection: "column",
     alignItems: "center",
+    // justifyContent :"spaceBetween"
   };
 
   const sidebarStyle = {
